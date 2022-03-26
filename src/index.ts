@@ -1,4 +1,6 @@
-import { Application, Container, Loader, Point, Sprite } from 'pixi.js'
+import { Application, Loader } from 'pixi.js'
+import { assets } from './assets';
+import { Scene } from './Scene';
 
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
@@ -35,34 +37,14 @@ window.addEventListener("resize", ()=>{
 window.dispatchEvent(new Event("resize"));
 
 
-Loader.shared.add({ url: "./RBR SS.PNG", name: "RBF1" });
-Loader.shared.add({ url: "./MclarenSS.PNG", name: "Mclaren" });
+Loader.shared.add(assets);
+
 
 Loader.shared.onComplete.add(() => {
 
-	const rbf1: Sprite = Sprite.from("RBF1");
-	const mclaren: Sprite = Sprite.from("Mclaren");
+	const myScene = new Scene();
+	app.stage.addChild(myScene);
 	
-	mclaren.x = 400;
-	mclaren.y = 600; 
-	mclaren.angle = -35; 
-
-	const inminentColission: Container = new Container();	
-
-	inminentColission.addChild(rbf1);
-	inminentColission.addChild(mclaren);
-	
-
-	inminentColission.scale.set(0.3);
-	inminentColission.position.set(640,320);
-	
-console.log(mclaren.toGlobal(new Point()));
-console.log(mclaren.parent.toGlobal(mclaren.position));
-
-const crash = mclaren.parent.toLocal(new Point(640,360));
-mclaren.position.copyFrom (crash);
-
-	app.stage.addChild(inminentColission);
 });
 
 Loader.shared.load();
