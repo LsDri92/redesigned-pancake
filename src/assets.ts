@@ -1,6 +1,4 @@
 export const assets = [
-    {url: "./RBR SS.PNG", name: "RBF1" },
-    {url: "./MclarenSS.PNG", name: "Mclaren"},
     {url: "./catjump/catjump1.png", name: "catjump1"},
     {url: "./catjump/catjump2.png", name: "catjump2"},
     {url: "./catjump/catjump3.png", name: "catjump3"},
@@ -10,8 +8,13 @@ export const assets = [
     {url: "./catjump/catjump7.png", name: "catjump7"},
     {url: "./UIlvlcomplete/metalPanel_blueCorner.png", name: "panel"},
     {url: "./UIlvlcomplete/UI-92.png", name: "completebar"},
-    {url: "./UIlvlcomplete/dotGreen.png", name: "greenbutton"}
-    
+    {url: "./UIlvlcomplete/UI-98.png", name: "greenbutton"},
+    {url: "./UIlvlcomplete/UI-19.png", name: "exitbutton"},
+    {url: "./UIlvlcomplete/UI-04.png", name: "textbox"},
+    {url: "./UIlvlcomplete/lvlcompleteCat1.png", name: "lvlcompletecat1"},
+    {url: "./UIlvlcomplete/lvlcompleteCat2.png", name: "lvlcompletecat2"},
+    {url: "./UIlvlcomplete/lvlcompleteCat3.png", name: "lvlcompletecat3"},
+    {url: "./UIlvlcomplete/lvlcompleteCat4.png", name: "lvlcompletecat4"}
 
 
 
