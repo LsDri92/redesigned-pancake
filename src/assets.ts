@@ -14,7 +14,9 @@ export const assets = [
     {url: "./UIlvlcomplete/lvlcompleteCat1.png", name: "lvlcompletecat1"},
     {url: "./UIlvlcomplete/lvlcompleteCat2.png", name: "lvlcompletecat2"},
     {url: "./UIlvlcomplete/lvlcompleteCat3.png", name: "lvlcompletecat3"},
-    {url: "./UIlvlcomplete/lvlcompleteCat4.png", name: "lvlcompletecat4"}
+    {url: "./UIlvlcomplete/lvlcompleteCat4.png", name: "lvlcompletecat4"},
+    {url: "./back.png", name: "backgroundimg"},
+    {url: "./platform-long.png", name: "longplatform"}
 
 
 

@@ -1,6 +1,7 @@
 import { Application, Loader } from 'pixi.js'
 import { assets } from './assets';
-import { Scene } from './Scene';
+import { Scene } from './Scenes/Scene';
+import { UIlvlcomplete }  from './Scenes/UIlvlcomplete';
 
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
@@ -44,6 +45,11 @@ Loader.shared.onComplete.add(() => {
 
 	const myScene = new Scene();
 	app.stage.addChild(myScene);
+
+	const myScene1 = new UIlvlcomplete();
+	app.stage.addChild(myScene1);
+	
+	
 	
 });
 
