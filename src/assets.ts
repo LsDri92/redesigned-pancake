@@ -16,8 +16,13 @@ export const assets = [
     {url: "./UIlvlcomplete/lvlcompleteCat3.png", name: "lvlcompletecat3"},
     {url: "./UIlvlcomplete/lvlcompleteCat4.png", name: "lvlcompletecat4"},
     {url: "./back.png", name: "backgroundimg"},
-    {url: "./platform-long.png", name: "longplatform"}
-
+    {url: "./platform-long.png", name: "longplatform"},
+    {url: "./UIpause/UI-8.png", name: "cartelpause"},
+    {url: "./UIpause/glassPanel_corners.png", name: "pausewindow"},
+    {url: "./UIpause/musicOn.png", name: "musicOn"},
+    {url: "./UIpause/forward.png", name: "play"},
+    {url: "./UIpause/musicOff.png", name: "musicOff"}
+    
 
 
 ]
