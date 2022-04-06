@@ -3,6 +3,7 @@ import { assets } from './assets';
 import { Scene } from './Scenes/Scene';
 //import { UIlvlcomplete }  from './Scenes/UIlvlcomplete';
 import { UIpause } from './Scenes/UIpause';
+import { Keyboard } from './utils/Keyboard';
 
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
@@ -12,6 +13,8 @@ const app = new Application({
 	width: 1280,
 	height: 720
 });
+
+Keyboard.initialize();
 
 window.addEventListener("resize", ()=>{
 	console.log("resized!");

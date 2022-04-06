@@ -21,6 +21,7 @@ export const assets = [
     {url: "./UIpause/glassPanel_corners.png", name: "pausewindow"},
     {url: "./UIpause/musicOn.png", name: "musicOn"},
     {url: "./UIpause/forward.png", name: "play"},
+    {url: "./UIpause/forwardon.png", name: "playon"},
     {url: "./UIpause/musicOff.png", name: "musicOff"}
     
 
