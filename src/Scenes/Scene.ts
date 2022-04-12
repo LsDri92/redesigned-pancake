@@ -1,9 +1,14 @@
-import { AnimatedSprite, Container, Texture, Text, Sprite } from "pixi.js";
+import {  Container, Texture, Text, Sprite } from "pixi.js";
+
 
 
 export class Scene extends Container {
 
+  
+
     constructor() {
+
+      
 
         super();
         
@@ -16,31 +21,7 @@ export class Scene extends Container {
 
         
         this.addChild(bgroundimg);
-        
-        //jumpingCatFlash
 
-        const jumpingCatFlash: AnimatedSprite = new AnimatedSprite(
-            [
-                Texture.from("catjump1"),
-                Texture.from("catjump2"),
-                Texture.from("catjump3"),
-                Texture.from("catjump4"),
-                Texture.from("catjump5"),
-                Texture.from("catjump6"),
-                Texture.from("catjump7")
-
-            ],
-            true
-
-        );
-        jumpingCatFlash.play();
-        jumpingCatFlash.animationSpeed = 0.2;
-        jumpingCatFlash.scale.set(3);
-        jumpingCatFlash.position.x = 40;
-        jumpingCatFlash.position.y = 33;
-
-
-        this.addChild(jumpingCatFlash);
 
             //plataforma
         const platform: Sprite = new Sprite(
@@ -57,9 +38,10 @@ export class Scene extends Container {
         const myText: Text = new Text("Jumping Cat Flash", { fontSize: 25, fill: 0xFF0000, fontFamily: "Lucida Console" });
         this.addChild(myText);
 
-
+            
 
 
 
     }
+
 }

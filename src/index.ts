@@ -1,8 +1,9 @@
-import { Application, Loader } from 'pixi.js'
+import { Application, Loader, Ticker } from 'pixi.js'
 import { assets } from './assets';
 import { Scene } from './Scenes/Scene';
+import { TickerScene } from './Scenes/TickerScene';
 //import { UIlvlcomplete }  from './Scenes/UIlvlcomplete';
-import { UIpause } from './Scenes/UIpause';
+//import { UIpause } from './Scenes/UIpause';
 import { Keyboard } from './utils/Keyboard';
 
 const app = new Application({
@@ -49,12 +50,20 @@ Loader.shared.onComplete.add(() => {
 
 	const myScene = new Scene();
 	app.stage.addChild(myScene);
+	
 
-	//const lvlcomplete = new UIlvlcomplete();
-	//app.stage.addChild(lvlcomplete);
+	const myScene1 = new TickerScene();
+	app.stage.addChild(myScene1);
+	Ticker.shared.add(function (deltaFrame){
+		myScene1.update(Ticker.shared.deltaMS, deltaFrame);
+	})
+
+
+	/*const lvlcomplete = new UIlvlcomplete();
+	app.stage.addChild(lvlcomplete);
 
 	const pause = new UIpause();
-	app.stage.addChild(pause);
+	app.stage.addChild(pause);*/
 	
 	
 	

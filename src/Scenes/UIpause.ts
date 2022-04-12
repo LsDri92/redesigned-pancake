@@ -1,12 +1,12 @@
 import { Container, Sprite, Text, Texture } from "pixi.js";
 import { Button } from "../ui/button";
 
+
 export class UIpause extends Container {
 
-    private musicButton: Button
-
-    private returnGameButton: Button
-
+    private musicButton: Button;
+    private returnGameButton: Button;
+    
     constructor() {
         super();
 
@@ -36,27 +36,28 @@ export class UIpause extends Container {
             pause.position.x=25;
                 
             this.musicButton = new Button(
-                Texture.from("musicOn"), 
-                Texture.from("musicOff"),
                 Texture.from("musicOn"),
-                
-                );
+                Texture.from ("musicOff"),
+                Texture.from ("musicOff"),
+            ); 
             
-
-           this.musicButton.on("buttonclick!", this.onButtonClick, this);
             this.musicButton.position.x = 150;
             this.musicButton.position.y = 90;
             this.musicButton.scale.set(2);
             this.musicButton.width= 150;
+           
+            
+                
+            
             
             
             cartelpause.addChild(this.musicButton);
-
+            
 
             this.returnGameButton = new Button(
                 Texture.from("play"),
                 Texture.from("playon"),
-                Texture.from("play"),
+                Texture.from("playon"),
                 
             )
 
@@ -80,5 +81,8 @@ export class UIpause extends Container {
     console.log("you click me!", this);
     }
 
+   
+    
   
 }
+  
