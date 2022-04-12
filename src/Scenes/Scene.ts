@@ -1,4 +1,5 @@
 import {  Container, Texture, Text, Sprite } from "pixi.js";
+import { HEIGHT, WIDTH } from "..";
 
 
 
@@ -16,8 +17,8 @@ export class Scene extends Container {
         const bgroundimg: Sprite = new Sprite(
             Texture.from("backgroundimg")
         )
-        bgroundimg.width = 1280,
-        bgroundimg.height = 720
+        bgroundimg.width = WIDTH,
+        bgroundimg.height = HEIGHT
 
         
         this.addChild(bgroundimg);

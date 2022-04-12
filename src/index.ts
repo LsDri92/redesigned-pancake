@@ -6,13 +6,17 @@ import { TickerScene } from './Scenes/TickerScene';
 //import { UIpause } from './Scenes/UIpause';
 import { Keyboard } from './utils/Keyboard';
 
+export const WIDTH = 1280;
+
+export const HEIGHT = 720;
+
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
 	resolution: window.devicePixelRatio || 1,
 	autoDensity: true,
 	backgroundColor: 0xFA9595,
-	width: 1280,
-	height: 720
+	width: WIDTH,
+	height: HEIGHT
 });
 
 Keyboard.initialize();
