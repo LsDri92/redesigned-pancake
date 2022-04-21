@@ -64,9 +64,9 @@ Loader.shared.onComplete.add(() => {
 
 
 	/*const lvlcomplete = new UIlvlcomplete();
-	app.stage.addChild(lvlcomplete);
+	app.stage.addChild(lvlcomplete);*/
 
-	const pause = new UIpause();
+	/*const pause = new UIpause();
 	app.stage.addChild(pause);*/
 	
 	

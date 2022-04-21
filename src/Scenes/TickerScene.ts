@@ -2,7 +2,7 @@ import { AnimatedSprite, Container, Graphics, Texture } from "pixi.js";
 import { HEIGHT, WIDTH } from "..";
 import { PhysicsContainer } from "../game/PhysicsContainer";
 import { IUpdateable } from "../utils/IUpdateable";
-//import { Keyboard } from "../utils/Keyboard";
+import { Keyboard } from "../utils/Keyboard";
 
 
 
@@ -55,7 +55,7 @@ export class TickerScene extends Container implements IUpdateable {
 
     this.physCat.addChild(this.jumpingCatFlash);
     this.physCat.addChild(auxZero);
-  }
+    }
     update(deltaTime: number, deltaFrame: number): void {
         this.jumpingCatFlash.update(deltaFrame); //update animation
 
@@ -74,7 +74,7 @@ export class TickerScene extends Container implements IUpdateable {
             this.physCat.speed.x = Math.abs(this.physCat.speed.x)*-1;
             this.physCat.scale.x = -1;
         }
-        else if (this.physCat.x < 0)
+       // else if (this.physCat.x < 0)
         {
             //limit left
             this.physCat.x = 0;
@@ -92,7 +92,7 @@ export class TickerScene extends Container implements IUpdateable {
 
       
 
-        /*
+        
         if (Keyboard.state.get("KeyD")){
             this.jumpingCatFlash.x++;
         }
@@ -104,9 +104,8 @@ export class TickerScene extends Container implements IUpdateable {
         }
         if (Keyboard.state.get("KeyW")){
             this.jumpingCatFlash.y--;
-        }*/
+        }
         
 
     }
-
 }
