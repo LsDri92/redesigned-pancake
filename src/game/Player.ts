@@ -43,7 +43,7 @@ export class Player extends PhysicsContainer implements IHitbox {
         this.runningCatFlash.play();
         this.runningCatFlash.anchor.set(0.5, 0.6);
         this.runningCatFlash.animationSpeed = 0.2;
-        this.runningCatFlash.scale.set(3);
+        
 
 
 
@@ -129,10 +129,9 @@ export class Player extends PhysicsContainer implements IHitbox {
 
         this.hitbox = new Graphics();
         this.hitbox.beginFill(0xFF00FF, 0.3);
-        this.hitbox.drawRect(0, 0, 14, 12);
+        this.hitbox.drawRect(0, 0, 1, 1);
         this.hitbox.endFill;
-        this.hitbox.x = -7;
-        this.hitbox.y = -12;
+     
 
 
 
@@ -165,10 +164,12 @@ export class Player extends PhysicsContainer implements IHitbox {
 
         if (Keyboard.state.get("ArrowRight")) {
             this.speed.x = Player.MOVE_PLAYER;
-            this.runningCatFlash.scale.x = 3;
+            this.runningCatFlash.scale.x = 1;
+            
         } else if (Keyboard.state.get("ArrowLeft")) {
-            this.speed.x = - Player.MOVE_PLAYER;
-            this.runningCatFlash.scale.x = -3;
+            this.speed.x = -Player.MOVE_PLAYER;
+            this.runningCatFlash.scale.x = -1;
+            
         } else {
             this.speed.x = 0;
         }

@@ -1,10 +1,10 @@
-import { Container, Graphics, Rectangle, Sprite } from "pixi.js";
-import { IHitbox } from "./IHitbox";
+import { Container,  Sprite } from "pixi.js";
 
 
-export class Bushes extends Container implements IHitbox {
 
-    private hitbox: Graphics;
+export class Bushes extends Container  {
+
+    
 
     constructor() {
         super();
@@ -13,20 +13,11 @@ export class Bushes extends Container implements IHitbox {
         const spr = Sprite.from("bush");
         this.addChild(spr);
 
-        this.hitbox = new Graphics();
-        this.hitbox.beginFill(0xFF0000, 0.3);
-        this.hitbox.drawRect(0, 0, 250, 132);
-        this.hitbox.endFill;
-
-        this.addChild(this.hitbox);
+        
 
     }
 
-    public getHitbox():Rectangle{
-        return   this.hitbox.getBounds();
-   
-       }
-   
+    
 
 
 }

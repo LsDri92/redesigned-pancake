@@ -53,7 +53,7 @@ export class TickerScene extends Container implements IUpdateable {
         this.bushes = []
 
         let bush = new Bushes;
-        bush.position.set(150, 650);
+        bush.position.set(250, 650);
         bush.scale.set(0.5);
         this.addChild(bush);
         this.bushes.push(bush);
@@ -116,7 +116,14 @@ export class TickerScene extends Container implements IUpdateable {
                 }
             }
 
-            for (let bush of this.bushes) {
+            
+        
+            if (this.platforms.length > 8){
+                platform.destroy();
+            }
+        }
+
+        /*for (let bush of this.bushes) {
             const overlap1 = checkColission(this.playerCat, bush);
             if (overlap1 != null) {
                 if (overlap1.width < overlap1.height) {
@@ -134,19 +141,14 @@ export class TickerScene extends Container implements IUpdateable {
                     } else if ((this.playerCat.y < bush.y)) {
                         this.playerCat.y += overlap1.height;
                     }
-                }
-            }
-        }
-            if (this.platforms.length > 8){
-                platform.destroy();
-            }
-        }
+                }*/
+            
 
         this.platforms = this.platforms.filter((elem) => !elem.destroyed);
         console.log(this.platforms.length)
         
-
-       
+        
+    
 
 
         /*   //limit horizontal
@@ -158,32 +160,17 @@ export class TickerScene extends Container implements IUpdateable {
                 else if (this.playerCat.x < 0) {
            //limit left
            this.playerCat.x = 0;
-       }
+       }*/
        
        //limit vertical
-       if (this.playerCat.y > HEIGHT) {
+       if (this.playerCat.y > 710) {
            this.playerCat.canJump = true;
-           this.playerCat.y = HEIGHT;
-       }*/
+           this.playerCat.y = 710;
+       }
 
 
 
-        /* if (Keyboard.state.get("KeyD")) {
-             this.walkingCatFlash.x++;
-             this.walkingCatFlash.scale.x= +3;
-         } 
- 
- 
-         if (Keyboard.state.get("KeyA")) {
-             this.walkingCatFlash.x--;
-             this.walkingCatFlash.scale.x = -3;
-         }
-         if (Keyboard.state.get("KeyS")) {
-             this.runningCatFlash.y++;
-         }
-         if (Keyboard.state.get("KeyW")) {
-             this.runningCatFlash.y--;
-         }*/
+       
 
        // this.world.x = -this.playerCat.x * this.worldTransform.d + WIDTH / 3;
         this.bground.tilePosition.x = this.world.x * 0.2;
