@@ -1,13 +1,12 @@
-import { AnimatedSprite, Graphics, Texture } from "pixi.js";
+import { AnimatedSprite, Graphics, Rectangle, Texture } from "pixi.js";
 import { Keyboard } from "../utils/Keyboard";
+import { IHitbox } from "./IHitbox";
 import { PhysicsContainer } from "./PhysicsContainer";
 
-export class Player extends PhysicsContainer 
+export class Player extends PhysicsContainer implements IHitbox {
 
-{
-
-    private static readonly GRAVITY = 400;
-    private static readonly MOVE_PLAYER = 250;
+    private static readonly GRAVITY = 600;
+    private static readonly MOVE_PLAYER = 220;
 
     public canJump = true;
 
@@ -17,14 +16,14 @@ export class Player extends PhysicsContainer
     private standingCatFlash: AnimatedSprite
     private jumpingCatFlash: AnimatedSprite*/
     //private physCat: PhysicsContainer;
-    private hitbox:Graphics;
-  
+    private hitbox: Graphics;
+
 
 
     constructor() {
         super();
 
-         //animated sprite run
+        //animated sprite run
 
         this.runningCatFlash = new AnimatedSprite(
             [
@@ -42,13 +41,13 @@ export class Player extends PhysicsContainer
         );
 
         this.runningCatFlash.play();
-        this.runningCatFlash.anchor.set(0.5,0.7);
+        this.runningCatFlash.anchor.set(0.5, 0.6);
         this.runningCatFlash.animationSpeed = 0.2;
         this.runningCatFlash.scale.set(3);
-       
-        
 
-         //animated sprite walk
+
+
+        //animated sprite walk
 
         /* this.walkingCatFlash = new AnimatedSprite(
             [
@@ -115,40 +114,40 @@ export class Player extends PhysicsContainer
         this.standingCatFlash.position.y = 450;*/
 
 
-       /*//physics cat
-        this.physCat = new PhysicsContainer();
-        this.physCat.speed.x = 300;
-        this.physCat.speed.y = 100;
-        this.physCat.acceleration.y = 10;
-        this.addChild(this.physCat);*/
+        /*//physics cat
+         this.physCat = new PhysicsContainer();
+         this.physCat.speed.x = 300;
+         this.physCat.speed.y = 100;
+         this.physCat.acceleration.y = 10;
+         this.addChild(this.physCat);*/
 
-       //anchor point
-       const auxZero = new Graphics();
+        //anchor point
+        const auxZero = new Graphics();
         auxZero.beginFill(0xFF00FF);
-        auxZero.drawCircle(0, 0, 10);
+        auxZero.drawCircle(0, 0, 5);
         auxZero.endFill();
 
         this.hitbox = new Graphics();
         this.hitbox.beginFill(0xFF00FF, 0.3);
         this.hitbox.drawRect(0, 0, 14, 12);
         this.hitbox.endFill;
-        this.hitbox.x =-7;
-        this.hitbox.y =-12;
+        this.hitbox.x = -7;
+        this.hitbox.y = -12;
 
 
 
         this.addChild(this.runningCatFlash);
         this.addChild(auxZero);
         this.runningCatFlash.addChild(this.hitbox);
-        
-        
+
+
 
         this.acceleration.y = Player.GRAVITY;
 
         Keyboard.down.on("ArrowUp", this.jump, this);
     }
 
-    public override destroy(options:any) {
+    public override destroy(options: any) {
         super.destroy(options);
         Keyboard.down.off("ArrowUp", this.jump);
     }
@@ -156,35 +155,40 @@ export class Player extends PhysicsContainer
 
 
 
-    public override update(deltaMS: number){
-        super.update(deltaMS/1000);
-        this.runningCatFlash.update(deltaMS / (1000/60));
+    public override update(deltaMS: number) {
+        super.update(deltaMS / 1000);
+        this.runningCatFlash.update(deltaMS / (1000 / 60));
 
 
 
 
 
-        if (Keyboard.state.get("ArrowRight")){
+        if (Keyboard.state.get("ArrowRight")) {
             this.speed.x = Player.MOVE_PLAYER;
             this.runningCatFlash.scale.x = 3;
-        } else if (Keyboard.state.get("ArrowLeft")){
+        } else if (Keyboard.state.get("ArrowLeft")) {
             this.speed.x = - Player.MOVE_PLAYER;
             this.runningCatFlash.scale.x = -3;
         } else {
             this.speed.x = 0;
         }
-        
 
-        if (Keyboard.state.get("ArrowUp")){
+
+        if (Keyboard.state.get("ArrowUp")) {
             this.jump();
         }
     }
 
-    private jump (){
-        if (this.canJump){
+    private jump() {
+        if (this.canJump) {
             this.canJump = false;
-            this.speed.y = -320;
+            this.speed.y = -300;
         }
+    }
+
+    public getHitbox(): Rectangle {
+        return this.hitbox.getBounds();
+
     }
 
 }

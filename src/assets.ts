@@ -26,6 +26,15 @@ export const assets = [
     //platform
     {url: "./platform-long.png", name: "longplatform"},
 
+    //Bushes
+    {url:"./bush.png", name: "bush"},
+
+    //house
+    {url:"./house.png", name: "house"},
+
+    //tree
+    {url:"./tree.png", name: "tree"},
+
     //UIpause
     {url: "./UIpause/UI-8.png", name: "cartelpause"},
     {url: "./UIpause/glassPanel_corners.png", name: "pausewindow"},
