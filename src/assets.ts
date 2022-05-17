@@ -35,6 +35,12 @@ export const assets = [
     //tree
     {url:"./tree.png", name: "tree"},
 
+    //middle
+    {url:"./middle.png", name: "middle"},
+
+    //floor
+    {url:"./tileset.png", name: "floor"},
+
     //UIpause
     {url: "./UIpause/UI-8.png", name: "cartelpause"},
     {url: "./UIpause/glassPanel_corners.png", name: "pausewindow"},
@@ -59,16 +65,6 @@ export const assets = [
     {url: "./standcat/standcat3.png", name: "standcat3"},
     {url: "./standcat/standcat4.png", name: "standcat4"},
 
-    //walkcat
-    {url: "./walkcat/walkcat1.png", name: "walkcat1"},
-    {url: "./walkcat/walkcat2.png", name: "walkcat2"},
-    {url: "./walkcat/walkcat3.png", name: "walkcat3"},
-    {url: "./walkcat/walkcat4.png", name: "walkcat4"},
-    {url: "./walkcat/walkcat5.png", name: "walkcat5"},
-    {url: "./walkcat/walkcat6.png", name: "walkcat6"},
-    {url: "./walkcat/walkcat7.png", name: "walkcat7"},
-    {url: "./walkcat/walkcat8.png", name: "walkcat8"},
-
-
+    
 ]
 

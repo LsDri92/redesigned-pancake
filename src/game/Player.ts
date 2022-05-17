@@ -12,11 +12,9 @@ export class Player extends PhysicsContainer implements IHitbox {
 
 
     private runningCatFlash: AnimatedSprite;
-    /*private walkingCatFlash: AnimatedSprite
-    private standingCatFlash: AnimatedSprite
-    private jumpingCatFlash: AnimatedSprite*/
-    //private physCat: PhysicsContainer;
+    private physCat: PhysicsContainer;
     private hitbox: Graphics;
+    
 
 
 
@@ -41,102 +39,35 @@ export class Player extends PhysicsContainer implements IHitbox {
         );
 
         this.runningCatFlash.play();
-        this.runningCatFlash.anchor.set(0.5, 0.6);
+        this.runningCatFlash.anchor.set(0.5, 0.5);
         this.runningCatFlash.animationSpeed = 0.2;
         
 
-
-
-        //animated sprite walk
-
-        /* this.walkingCatFlash = new AnimatedSprite(
-            [
-                Texture.from("walkcat1"),
-                Texture.from("walkcat2"),
-                Texture.from("walkcat3"),
-                Texture.from("walkcat4"),
-                Texture.from("walkcat5"),
-                Texture.from("walkcat6"),
-                Texture.from("walkcat7"),
-                Texture.from("walkcat8"),
-            ],
-            true
-        );
-
-        this.walkingCatFlash.play();
-        this.walkingCatFlash.anchor.set(0.5);
-        this.walkingCatFlash.animationSpeed = 0.2;
-        this.walkingCatFlash.scale.set(3);
-        this.walkingCatFlash.position.x = 400;
-        this.walkingCatFlash.position.y = 350;
-
-         //Animated Sprite jump
-
-         this.jumpingCatFlash = new AnimatedSprite(
-            [
-                Texture.from("catjump1"),
-                Texture.from("catjump2"),
-                Texture.from("catjump3"),
-                Texture.from("catjump4"),
-                Texture.from("catjump5"),
-                Texture.from("catjump6"),
-                Texture.from("catjump7")
-
-            ],
-            false
-
-        );
-        this.jumpingCatFlash.play();
-        this.jumpingCatFlash.anchor.set(1.2);
-        this.jumpingCatFlash.animationSpeed = 0.2;
-        this.jumpingCatFlash.scale.set(3);
-        this.jumpingCatFlash.position.x = 45;
-        this.jumpingCatFlash.position.y = 30;
-
-
-         //animated sprite stand
-
-         this.standingCatFlash = new AnimatedSprite(
-
-            [
-                Texture.from("standcat1"),
-                Texture.from("standcat2"),
-                Texture.from("standcat3"),
-                Texture.from("standcat4"),
-            ],
-            true
-        );
-
-        this.standingCatFlash.play();
-        this.standingCatFlash.animationSpeed = 0.2;
-        this.standingCatFlash.scale.set(3);
-        this.standingCatFlash.position.x = 500;
-        this.standingCatFlash.position.y = 450;*/
-
-
-        /*//physics cat
+        //physics cat
          this.physCat = new PhysicsContainer();
          this.physCat.speed.x = 300;
          this.physCat.speed.y = 100;
          this.physCat.acceleration.y = 10;
-         this.addChild(this.physCat);*/
+         this.addChild(this.physCat);
 
         //anchor point
         const auxZero = new Graphics();
         auxZero.beginFill(0xFF00FF);
         auxZero.drawCircle(0, 0, 5);
         auxZero.endFill();
+        auxZero.visible = false;
 
         this.hitbox = new Graphics();
         this.hitbox.beginFill(0xFF00FF, 0.3);
-        this.hitbox.drawRect(0, 0, 1, 1);
+        this.hitbox.drawRect(-20, -20, this.runningCatFlash.width, this.runningCatFlash.height );
         this.hitbox.endFill;
+        this.hitbox.visible = false;
      
 
 
 
         this.addChild(this.runningCatFlash);
-        this.addChild(auxZero);
+        this.runningCatFlash.addChild(auxZero);
         this.runningCatFlash.addChild(this.hitbox);
 
 
@@ -177,13 +108,16 @@ export class Player extends PhysicsContainer implements IHitbox {
 
         if (Keyboard.state.get("ArrowUp")) {
             this.jump();
+            
         }
     }
 
     private jump() {
         if (this.canJump) {
             this.canJump = false;
-            this.speed.y = -300;
+         
+
+            this.speed.y = -400;
         }
     }
 

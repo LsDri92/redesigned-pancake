@@ -14,6 +14,7 @@ export class Platform extends Container implements IHitbox {
         auxZero.beginFill(0xFF00FF);
         auxZero.drawCircle(0, 0, 10);
         auxZero.endFill();
+        auxZero.visible = false;
 
         //plataforma
         this.platform =new Sprite (
@@ -23,8 +24,9 @@ export class Platform extends Container implements IHitbox {
 
         this.hitbox = new Graphics();
         this.hitbox.beginFill(0xFF0000, 0.3);
-        this.hitbox.drawRect(0, 0, 150, 75);
+        this.hitbox.drawRect(0, 0, this.platform.width,  this.platform.height);
         this.hitbox.endFill;
+        this.hitbox.visible = false;
 
 
         this.addChild(this.platform);
