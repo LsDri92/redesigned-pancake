@@ -34,7 +34,7 @@ export class UIpause extends Container {
         pausewindow.position.x = 260;
         pausewindow.position.y = 30;
 
-        const pause: Text = new Text("Pause", { fontSize: 20, fill: 0x000000, fontFamily: "Tahoma" });
+        const pause: Text = new Text("JumpingCatFlash", { fontSize: 20, fill: 0x000000, fontFamily: "Tahoma" });
         pausewindow.addChild(pause);
         pause.height = 90;
         pause.position.x = 25;

@@ -4,7 +4,7 @@ import { IHitbox } from "./IHitbox";
 export class Platform extends Container implements IHitbox {
 
     private hitbox: Graphics;
-    private platform: Sprite
+    private platform: Sprite;
 
     constructor() {
         super();

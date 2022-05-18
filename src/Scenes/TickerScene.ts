@@ -3,8 +3,8 @@ import { HEIGHT, WIDTH } from "..";
 import { checkColission } from "../game/IHitbox";
 import { Platform } from "../game/Platforms";
 import { Player } from "../game/Player";
+import { Spikes } from "../game/Spikes";
 import { IUpdateable } from "../utils/IUpdateable";
-//import { Keyboard } from "../utils/Keyboard";
 
 
 
@@ -12,6 +12,7 @@ export class TickerScene extends Container implements IUpdateable {
 
     private playerCat: Player;
     private platforms: Platform[];
+    private spikes: Spikes[];
     private world: Container;
     private bground: TilingSprite;
     private floor: TilingSprite;
@@ -24,6 +25,7 @@ export class TickerScene extends Container implements IUpdateable {
     constructor() {
         super();
 
+
         this.world = new Container();
         this.bground = new TilingSprite(Texture.from("backgroundimg"), WIDTH * 2, HEIGHT);
         this.floor = new TilingSprite(Texture.from("floor"), WIDTH * 6)
@@ -35,6 +37,7 @@ export class TickerScene extends Container implements IUpdateable {
         this.middle1.position.set(-630, 450);
 
         this.addChild(this.bground);
+       
 
         const house: Sprite = new Sprite
             (Texture.from("house"))
@@ -49,7 +52,12 @@ export class TickerScene extends Container implements IUpdateable {
         tree.position.y = 420;
         this.world.addChild(tree);
 
+        this.world.addChild(this.middle);
+        this.world.addChild(this.middle1);
 
+        
+
+            //Player
 
         this.playerCat = new Player();
         this.playerCat.position.set(150, 705);
@@ -74,15 +82,61 @@ export class TickerScene extends Container implements IUpdateable {
         this.world.addChild(plat);
         this.platforms.push(plat);
 
+    
+
+       
+        //spikes
+
+        this.spikes = [];
+
+        let spike = new Spikes
+        spike.x = 1600;
+        spike.y = 685;
+        this.world.addChild(spike);
+        this.spikes.push(spike);
+
+        spike = new Spikes
+        spike.x = 1630;
+        spike.y = 685;
+        this.world.addChild(spike);
+        this.spikes.push(spike);
+
+        spike =new Spikes
+        spike.x = 1660;
+        spike.y = 685;
+        this.world.addChild(spike);
+        this.spikes.push(spike);
+
+        spike =new Spikes
+        spike.x = 1690;
+        spike.y = 685;
+        this.world.addChild(spike);
+        this.spikes.push(spike);
+        
+        spike =new Spikes
+        spike.x = 1850;
+        spike.y = 600;
+        this.world.addChild(spike);
+        this.spikes.push(spike);
+
+        spike =new Spikes
+        spike.x = 1875;
+        spike.y = 600;
+        this.world.addChild(spike);
+        this.spikes.push(spike);
+
+        spike =new Spikes
+        spike.x = 1890;
+        spike.y = 600;
+        this.world.addChild(spike);
+        this.spikes.push(spike);
+
         plat = new Platform;
         plat.x = 1850;
         plat.y = 620;
         this.world.addChild(plat);
         this.platforms.push(plat);
 
-
-        this.world.addChild(this.middle);
-        this.world.addChild(this.middle1);
 
         this.world.addChild(this.floor);
         this.world.addChild(this.playerCat);
@@ -119,6 +173,29 @@ export class TickerScene extends Container implements IUpdateable {
                 }
             }
 
+            for (let spike of this.spikes) {
+
+                const overlap = checkColission(this.playerCat, spike);
+    
+                if (overlap != null) {
+                    if (overlap.width < overlap.height) {
+                        if (this.playerCat.x > spike.x) {
+                            this.playerCat.x += overlap.width;
+                        } else if ((this.playerCat.x < spike.x)) {
+                            this.playerCat.x -= overlap.width;
+                        }
+                    } else {
+                        if (this.playerCat.y < spike.y) {
+                            this.playerCat.y -= overlap.height;
+                            this.playerCat.speed.y = 0;
+                            this.playerCat.canJump = true;
+    
+                        } else if ((this.playerCat.y > spike.y)) {
+                            this.playerCat.y += overlap.height;
+                        }
+                    }
+                }
+
 
 
 
@@ -144,5 +221,5 @@ export class TickerScene extends Container implements IUpdateable {
 
     }
 
-
+    }
 }

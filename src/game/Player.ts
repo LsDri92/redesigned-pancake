@@ -7,8 +7,10 @@ export class Player extends PhysicsContainer implements IHitbox {
 
     private static readonly GRAVITY = 600;
     private static readonly MOVE_PLAYER = 220;
+    
 
     public canJump = true;
+    public life = 2;
 
 
     private runningCatFlash: AnimatedSprite;
@@ -120,6 +122,10 @@ export class Player extends PhysicsContainer implements IHitbox {
             this.speed.y = -400;
         }
     }
+
+   
+    
+    
 
     public getHitbox(): Rectangle {
         return this.hitbox.getBounds();

@@ -41,6 +41,9 @@ export const assets = [
     //floor
     {url:"./tileset.png", name: "floor"},
 
+    //spikes
+    {url:"./spikes.png", name:"spike"},
+
     //UIpause
     {url: "./UIpause/UI-8.png", name: "cartelpause"},
     {url: "./UIpause/glassPanel_corners.png", name: "pausewindow"},
