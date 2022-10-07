@@ -16,6 +16,7 @@ export class Keyboard {
     Keyboard.initialized = true;
     document.addEventListener("keydown", Keyboard.onKeyDown);
     document.addEventListener("keyup", Keyboard.onKeyUp);
+    
   }
 
   private static onKeyDown(e: KeyboardEvent) {
@@ -29,4 +30,6 @@ export class Keyboard {
 
     Keyboard.state.set(e.code, false);
   }
+
+  
 }

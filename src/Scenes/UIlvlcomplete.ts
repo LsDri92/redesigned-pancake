@@ -1,7 +1,11 @@
-import { Container, NineSlicePlane, Texture, Text, Sprite, AnimatedSprite } from "pixi.js";
+import { NineSlicePlane, Texture, Text, Sprite, AnimatedSprite } from "pixi.js";
+import { SceneBase } from "../utils/SceneBase";
 
         
-        export class UIlvlcomplete extends Container {
+        export class UIlvlcomplete extends SceneBase {
+            public update(): void {
+                
+            }
 
             constructor() {
                 super();

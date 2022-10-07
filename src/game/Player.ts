@@ -5,23 +5,26 @@ import { PhysicsContainer } from "./PhysicsContainer";
 
 export class Player extends PhysicsContainer implements IHitbox {
 
-    private static readonly GRAVITY = 600;
+   // private static readonly GRAVITY = 600;
     private static readonly MOVE_PLAYER = 220;
-    
+
 
     public canJump = true;
-    public life = 2;
+    public life = 100;
 
 
     private runningCatFlash: AnimatedSprite;
     private physCat: PhysicsContainer;
     private hitbox: Graphics;
-    
+    /* private idleCat: AnimatedSprite;*/
+
 
 
 
     constructor() {
         super();
+
+        
 
         //animated sprite run
 
@@ -43,14 +46,14 @@ export class Player extends PhysicsContainer implements IHitbox {
         this.runningCatFlash.play();
         this.runningCatFlash.anchor.set(0.5, 0.5);
         this.runningCatFlash.animationSpeed = 0.2;
-        
+
 
         //physics cat
-         this.physCat = new PhysicsContainer();
-         this.physCat.speed.x = 300;
-         this.physCat.speed.y = 100;
-         this.physCat.acceleration.y = 10;
-         this.addChild(this.physCat);
+        this.physCat = new PhysicsContainer();
+        this.physCat.speed.x = 300;
+        this.physCat.speed.y = 100;
+        this.physCat.acceleration.y = 10;
+        this.addChild(this.physCat);
 
         //anchor point
         const auxZero = new Graphics();
@@ -61,10 +64,10 @@ export class Player extends PhysicsContainer implements IHitbox {
 
         this.hitbox = new Graphics();
         this.hitbox.beginFill(0xFF00FF, 0.3);
-        this.hitbox.drawRect(-20, -20, this.runningCatFlash.width, this.runningCatFlash.height );
+        this.hitbox.drawRect(-20, -20, this.runningCatFlash.width, this.runningCatFlash.height);
         this.hitbox.endFill;
         this.hitbox.visible = false;
-     
+
 
 
 
@@ -74,7 +77,7 @@ export class Player extends PhysicsContainer implements IHitbox {
 
 
 
-        this.acceleration.y = Player.GRAVITY;
+        //
 
         Keyboard.down.on("ArrowUp", this.jump, this);
     }
@@ -98,11 +101,11 @@ export class Player extends PhysicsContainer implements IHitbox {
         if (Keyboard.state.get("ArrowRight")) {
             this.speed.x = Player.MOVE_PLAYER;
             this.runningCatFlash.scale.x = 1;
-            
+
         } else if (Keyboard.state.get("ArrowLeft")) {
             this.speed.x = -Player.MOVE_PLAYER;
             this.runningCatFlash.scale.x = -1;
-            
+
         } else {
             this.speed.x = 0;
         }
@@ -110,22 +113,28 @@ export class Player extends PhysicsContainer implements IHitbox {
 
         if (Keyboard.state.get("ArrowUp")) {
             this.jump();
-            
+
         }
     }
 
     private jump() {
         if (this.canJump) {
             this.canJump = false;
-         
+
 
             this.speed.y = -400;
         }
     }
 
-   
-    
-    
+
+
+    public getDamage() {
+        this.life -= 1;
+    }
+
+
+
+
 
     public getHitbox(): Rectangle {
         return this.hitbox.getBounds();

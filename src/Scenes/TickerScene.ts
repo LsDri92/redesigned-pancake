@@ -1,24 +1,35 @@
 import { Container, Sprite, Texture, TilingSprite, } from "pixi.js";
-import { HEIGHT, WIDTH } from "..";
+
 import { checkColission } from "../game/IHitbox";
 import { Platform } from "../game/Platforms";
+import { Platwithspike } from "../game/Platformwithspike";
 import { Player } from "../game/Player";
 import { Spikes } from "../game/Spikes";
 import { IUpdateable } from "../utils/IUpdateable";
 
+import { SceneBase } from "../utils/SceneBase";
+import { SceneManager } from "../utils/SceneManager";
+import { MenuScene } from "./MenuScene";
+import { TextScene } from "./TextScene";
 
 
-export class TickerScene extends Container implements IUpdateable {
+
+
+
+export class TickerScene extends SceneBase implements IUpdateable {
 
     private playerCat: Player;
     private platforms: Platform[];
+    private platwithspike: Platwithspike[];
     private spikes: Spikes[];
     private world: Container;
     private bground: TilingSprite;
     private floor: TilingSprite;
     private middle: Sprite;
     private middle1: Sprite;
-    
+    private checkeredFlag: Sprite;
+
+
 
 
 
@@ -27,8 +38,8 @@ export class TickerScene extends Container implements IUpdateable {
 
 
         this.world = new Container();
-        this.bground = new TilingSprite(Texture.from("backgroundimg"), WIDTH * 2, HEIGHT);
-        this.floor = new TilingSprite(Texture.from("floor"), WIDTH * 6)
+        this.bground = new TilingSprite(Texture.from("backgroundimg"), SceneManager.WIDTH * 2, SceneManager.HEIGHT);
+        this.floor = new TilingSprite(Texture.from("floor"), SceneManager.WIDTH * 6)
         this.floor.y = 705;
 
         this.middle = new Sprite(Texture.from("middle"));
@@ -37,7 +48,7 @@ export class TickerScene extends Container implements IUpdateable {
         this.middle1.position.set(-630, 450);
 
         this.addChild(this.bground);
-       
+
 
         const house: Sprite = new Sprite
             (Texture.from("house"))
@@ -55,9 +66,9 @@ export class TickerScene extends Container implements IUpdateable {
         this.world.addChild(this.middle);
         this.world.addChild(this.middle1);
 
-        
 
-            //Player
+
+        //Player
 
         this.playerCat = new Player();
         this.playerCat.position.set(150, 705);
@@ -82,9 +93,22 @@ export class TickerScene extends Container implements IUpdateable {
         this.world.addChild(plat);
         this.platforms.push(plat);
 
-    
+        plat = new Platform;
+        plat.x = 2150;
+        plat.y = 600;
+        this.world.addChild(plat);
+        this.platforms.push(plat);
 
-       
+
+
+
+        //platform with spikes
+
+        this.platwithspike = [];
+        let plats = new Platwithspike
+        plats.position.set(2450, 620);
+        this.world.addChild(plats);
+        this.platwithspike.push(plats);
         //spikes
 
         this.spikes = [];
@@ -101,31 +125,31 @@ export class TickerScene extends Container implements IUpdateable {
         this.world.addChild(spike);
         this.spikes.push(spike);
 
-        spike =new Spikes
+        spike = new Spikes
         spike.x = 1660;
         spike.y = 685;
         this.world.addChild(spike);
         this.spikes.push(spike);
 
-        spike =new Spikes
+        spike = new Spikes
         spike.x = 1690;
         spike.y = 685;
         this.world.addChild(spike);
         this.spikes.push(spike);
-        
-        spike =new Spikes
+
+        spike = new Spikes
         spike.x = 1850;
         spike.y = 600;
         this.world.addChild(spike);
         this.spikes.push(spike);
 
-        spike =new Spikes
+        spike = new Spikes
         spike.x = 1875;
         spike.y = 600;
         this.world.addChild(spike);
         this.spikes.push(spike);
 
-        spike =new Spikes
+        spike = new Spikes
         spike.x = 1890;
         spike.y = 600;
         this.world.addChild(spike);
@@ -137,23 +161,54 @@ export class TickerScene extends Container implements IUpdateable {
         this.world.addChild(plat);
         this.platforms.push(plat);
 
+        spike = new Spikes
+        spike.x = 2420;
+        spike.y = 685;
+        this.world.addChild(spike);
+        this.spikes.push(spike);
+
+
+        spike = new Spikes
+        spike.x = 2450;
+        spike.y = 685;
+        this.world.addChild(spike);
+        this.spikes.push(spike);
+
+
+        spike = new Spikes
+        spike.x = 2470;
+        spike.y = 685;
+        this.world.addChild(spike);
+        this.spikes.push(spike);
+
+        this.checkeredFlag = new Sprite(
+            Texture.from("chekflag")
+        );
+
+        this.checkeredFlag.scale.set(3);
+        this.checkeredFlag.position.set(2000, 550);
+
+
+
 
         this.world.addChild(this.floor);
+        this.addChild(this.checkeredFlag);
         this.world.addChild(this.playerCat);
         this.addChild(this.world);
 
 
     }
-    update(deltaTime: number, _deltaFrame: number): void {
+    update(_frame: number, deltaMs: number): void {
 
 
 
-        this.playerCat.update(deltaTime); //update animation
+        this.playerCat.update(deltaMs); //update animation
 
         for (let platform of this.platforms) {
 
-            const overlap = checkColission(this.playerCat, platform);
 
+
+            const overlap = checkColission(this.playerCat, platform);
             if (overlap != null) {
                 if (overlap.width < overlap.height) {
                     if (this.playerCat.x > platform.x) {
@@ -176,7 +231,7 @@ export class TickerScene extends Container implements IUpdateable {
             for (let spike of this.spikes) {
 
                 const overlap = checkColission(this.playerCat, spike);
-    
+
                 if (overlap != null) {
                     if (overlap.width < overlap.height) {
                         if (this.playerCat.x > spike.x) {
@@ -189,37 +244,54 @@ export class TickerScene extends Container implements IUpdateable {
                             this.playerCat.y -= overlap.height;
                             this.playerCat.speed.y = 0;
                             this.playerCat.canJump = true;
-    
+                            this.playerCat.destroy(true);
+
+
                         } else if ((this.playerCat.y > spike.y)) {
                             this.playerCat.y += overlap.height;
+
                         }
                     }
                 }
 
+                if (this.playerCat.destroyed) {
+                    SceneManager.changeScene(new TextScene);
+                }
 
+                if (this.playerCat.x > 2700) {
+                    SceneManager.changeScene(new MenuScene);
+                }
+
+            }
+
+
+
+            //limit vertical
+            if (this.playerCat.y > 690) {
+                this.playerCat.canJump = true;
+                this.playerCat.y = 690;
+            }
+
+
+
+
+            if (this.playerCat.x > SceneManager.WIDTH / 2) {
+                this.world.x = -this.playerCat.x * this.worldTransform.d + SceneManager.WIDTH / 2;
+            }
+
+            this.bground.tilePosition.x = this.world.x * 0.2;
+
+
+            if (this.playerCat.x < 0)
+                this.playerCat.x = 0;
 
 
         }
 
 
 
-        //limit vertical
-        if (this.playerCat.y > 690) {
-            this.playerCat.canJump = true;
-            this.playerCat.y = 690;
-        }
 
 
-
-
-
-        this.world.x = -this.playerCat.x * this.worldTransform.d + WIDTH / 3;
-        this.bground.tilePosition.x = this.world.x * 0.2;
-       
-        if (this.playerCat.x < 0)
-            this.playerCat.x = 0;
-
-    }
 
     }
 }

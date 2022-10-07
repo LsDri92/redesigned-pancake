@@ -1,11 +1,20 @@
-import { Container, Sprite, State, Text, Texture } from "pixi.js";
+import { Sprite, State, Text, Texture, TilingSprite } from "pixi.js";
 import { Button } from "../ui/button";
 import { ToggleButton } from "../ui/toggleButton";
+import { SceneBase } from "../utils/SceneBase";
+import { SceneManager } from "../utils/SceneManager";
 
 
-export class UIpause extends Container {
 
 
+export class UIpause extends SceneBase {
+    SceneBase: any;
+    public update(): void {
+
+    }
+
+    
+    private bgcolour: TilingSprite;
     private returnGameButton: Button;
     private musicButtonToggle: ToggleButton;
 
@@ -13,6 +22,14 @@ export class UIpause extends Container {
 
     constructor() {
         super();
+
+        this.bgcolour = new TilingSprite (
+            Texture.from("backgroundimg")
+        )
+        this.bgcolour.height = SceneManager.HEIGHT;
+        this.bgcolour.width = SceneManager.WIDTH;
+        
+        this.addChild(this.bgcolour);
 
 
         const cartelpause = new Sprite(
@@ -37,7 +54,8 @@ export class UIpause extends Container {
         const pause: Text = new Text("JumpingCatFlash", { fontSize: 20, fill: 0x000000, fontFamily: "Tahoma" });
         pausewindow.addChild(pause);
         pause.height = 90;
-        pause.position.x = 25;
+        pause.width = 90;
+        pause.position.x = 5;
 
 
         this.musicButtonToggle = new ToggleButton(
@@ -73,9 +91,15 @@ export class UIpause extends Container {
         this.returnGameButton.position.y = 90;
         this.returnGameButton.scale.set(2);
         this.returnGameButton.width = 150;
-        this.returnGameButton.on("you click me!", this.onMouseClick, this);
+      
+        this.returnGameButton.on("you click me!", this.onMouseClick, this)
+       
+        
 
         cartelpause.addChild(this.returnGameButton);
+       
+
+
 
         document.addEventListener("keydown", this.onKeyDown.bind(this));
 
@@ -95,9 +119,13 @@ export class UIpause extends Container {
     }
 
 
-    private onMouseClick():void{
-         console.log("you click me!", this);
-     }
+    private onMouseClick(): void {
+        console.log("you click me!", this);
+        
+    }
+
+   
+   
 
 
 

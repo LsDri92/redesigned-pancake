@@ -22,6 +22,7 @@ export const assets = [
     
     //bground
     {url: "./back.png", name: "backgroundimg"},
+    {url: "./menuback.png", name: "backmenu"},
 
     //platform
     {url: "./platform-long.png", name: "longplatform"},
@@ -68,6 +69,10 @@ export const assets = [
     {url: "./standcat/standcat3.png", name: "standcat3"},
     {url: "./standcat/standcat4.png", name: "standcat4"},
 
-    
+    //fonts
+    {url:"https://fonts.googleapis.com/css2?family=Paprika&display=swap", name:"fuente1"},
+
+    //checkered flag
+    {url: ".\checkeredflag.png", name: "chekflag"}
 ]
 
