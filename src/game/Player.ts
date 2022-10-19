@@ -5,7 +5,7 @@ import { PhysicsContainer } from "./PhysicsContainer";
 
 export class Player extends PhysicsContainer implements IHitbox {
 
-   // private static readonly GRAVITY = 600;
+    // private static readonly GRAVITY = 600;
     private static readonly MOVE_PLAYER = 220;
 
 
@@ -24,7 +24,7 @@ export class Player extends PhysicsContainer implements IHitbox {
     constructor() {
         super();
 
-        
+
 
         //animated sprite run
 
