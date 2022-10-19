@@ -5,7 +5,7 @@ import { PhysicsContainer } from "./PhysicsContainer";
 
 export class Player extends PhysicsContainer implements IHitbox {
 
-    // private static readonly GRAVITY = 600;
+    private static readonly GRAVITY = 600;
     private static readonly MOVE_PLAYER = 220;
 
 
@@ -76,8 +76,7 @@ export class Player extends PhysicsContainer implements IHitbox {
         this.runningCatFlash.addChild(this.hitbox);
 
 
-
-        //
+        this.acceleration.y = Player.GRAVITY;
 
         Keyboard.down.on("ArrowUp", this.jump, this);
     }
